@@ -6,6 +6,8 @@ namespace SRS.Core.Entities
 {
     public class Answer
     {
-        public string Response { get; set; }
+        public Guid PhraseId { get; } 
+
+        public string Response { get; }
     }
 }
