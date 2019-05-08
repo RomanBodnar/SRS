@@ -4,16 +4,15 @@ using System.Data.SqlClient;
 using System.Text;
 using Dapper;
 using Microsoft.Extensions.Configuration;
+using SRS.Infrastructure.Options;
 
 namespace SRS.Infrastructure.Data
 {
     public class SrsDatabaseInitializer
     {
-        public void Initialize(IConfiguration configuration)
+        public void Initialize(DatastoreOptions options)
         {
-            string master = configuration.GetConnectionString("MasterConnection");
-            string srs = configuration.GetConnectionString("SrsConnection");
-            string databaseName = configuration.GetSection("DataStore")["DatabaseName"];
+            string databaseName = options.DatabaseName;
 
             string createDatabaseSql = 
             $@"IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = '{databaseName}')
@@ -21,7 +20,7 @@ namespace SRS.Infrastructure.Data
                 CREATE DATABASE ""{databaseName}""
             END";
 
-            using (var connection = new SqlConnection(master))
+            using (var connection = new SqlConnection(options.MasterConnection))
             {
                 connection.Open();
                 try
@@ -35,7 +34,7 @@ namespace SRS.Infrastructure.Data
                 }
             }
 
-            using (var connection = new SqlConnection(srs))
+            using (var connection = new SqlConnection(options.SrsConnection))
             {
                 connection.Open();
 

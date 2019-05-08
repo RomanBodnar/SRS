@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SRS.Infrastructure.Data;
+using SRS.Infrastructure.Options;
 
 namespace SRS.Web
 {
@@ -20,9 +21,8 @@ namespace SRS.Web
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var configuration = services.GetService<IConfiguration>();
-                    
-                    new SrsDatabaseInitializer().Initialize(configuration);
+                    var datastoreOptions = (IOptions<DatastoreOptions>)services.GetService(typeof(IOptions<DatastoreOptions>));
+                    new SrsDatabaseInitializer().Initialize(datastoreOptions.Value);
                 }
                 catch (Exception ex)
                 {

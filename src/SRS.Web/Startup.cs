@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using SRS.Infrastructure.Options;
 
 namespace SRS.Web
 {
@@ -21,8 +22,8 @@ namespace SRS.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            //services.Configure<DataStoreOptions>(Configuration);
+            services.AddOptions();
+            services.Configure<DatastoreOptions>(Configuration.GetSection("DataStore"));
             //public static class ServiceCollectionExtensions
             //{
             //    public static TOptions ConfigureOptions<TOptions>(this IServiceCollection services, IConfigurationRoot configuration, string sectionName) where TOptions : class, new()
