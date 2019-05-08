@@ -1,0 +1,16 @@
+@apiUrl = http://localhost:5001/api
+@phrase = phrase
+
+GET {{apiUrl}}/{{phrase}}
+
+### Add new phrase to the vocabulary
+POST {{apiUrl}}/{{phrase}}
+Content-Type: application/json
+
+{
+    "term": "approach",
+    "translation": "підхід, наближатися",
+    "meaning": "come near or nearer to (someone or something) in distance.",
+    "synonym": "near"
+}
+
