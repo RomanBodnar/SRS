@@ -4,6 +4,8 @@ namespace SRS.Core.Entities
 {
     public class Phrase
     {
+        public int Id { get; set; }
+
         public string Term { get; set; }
 
         public string Translation { get; set; }
