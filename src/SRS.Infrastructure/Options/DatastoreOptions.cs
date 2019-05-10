@@ -6,8 +6,8 @@ namespace SRS.Infrastructure.Options
 {
     public class DatastoreOptions
     {
+        public string Connection { get; set; }
+        public string InitialCatalog { get; set; }
         public string DatabaseName { get; set; }
-        public string MasterConnection { get; set; }
-        public string SrsConnection { get; set; }
     }
 }
