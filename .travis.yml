@@ -1,5 +1,5 @@
 language: csharp
-solution: .\src\Srs.sln
+solution: src/Srs.sln
 mono: none
 dotnet: 2.2.300
 script:
