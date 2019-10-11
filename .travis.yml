@@ -1,12 +1,7 @@
 language: csharp
-solution: src\Srs.sln
+solution: .\src\Srs.sln
 mono: none
 dotnet: 2.2.300
-sudo: false
-
-env:
-    global:
-        - DOTNET_CLI_TELEMETRY_OPTOUT: 1
-
 script:
-    - dotnet build .\src\Srs.sln -c Release
+    - dotnet restore
+    - dotnet build
